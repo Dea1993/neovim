@@ -13,10 +13,10 @@
 
 To ensure plugins (Mason, Telescope, Treesitter) function correctly, install the following packages via `pacman`:
 
-    sudo pacman -S git nodejs npm ripgrep fd base-devel unzip nerd-fonts
+    sudo pacman -S git npm ripgrep base-devel unzip nerd-fonts
 
-- npm/nodejs: Required for LSP servers like vtsls and pyright.
-- ripgrep/fd: Essential for Telescope's instantaneous file and text searching.
+- npm: Required for LSP servers like vtsls and pyright.
+- ripgrep: Essential for Telescope's instantaneous file and text searching.
 - base-devel: Needed to compile the native FZF extension.
 - unzip: Used by Mason to extract downloaded packages.
 
