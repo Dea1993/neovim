@@ -28,6 +28,7 @@ return {
           "pyright",      -- Python
           "vtsls",        -- JavaScript/TypeScript (più moderno di tsserver)
           "bashls",       -- Bash
+          "arduino_language_server",
         },
       })
 
@@ -46,8 +47,24 @@ return {
         filetypes = { "sh", "bash" },
       })
 
-      -- Abilita i server configurati sopra
-      vim.lsp.enable({ 'pyright', 'bashls' })
+      -- Arduino
+      vim.lsp.config('arduino_language_server', {
+        cmd = {
+          "arduino-language-server",
+          "-cli", "arduino-cli",
+          "-cli-config", vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
+          "-fqbn", "arduino:avr:uno" -- Cambia se usi un'altra scheda
+        },
+        filetypes = { "arduino" },
+      })
+
+      vim.lsp.config('clangd', {
+        cmd = { "clangd", "--background-index", "--clang-tidy" },
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto", "h" },
+      })
+
+      -- Ricordati di abilitarlo!
+      vim.lsp.enable({ 'pyright', 'bashls', 'arduino_language_server', 'clangd' })
 
       -- AUTOCOMPLETE with TAB
       local cmp = require('cmp')
