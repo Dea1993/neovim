@@ -114,7 +114,7 @@ return {
   {
     "rcarriga/nvim-notify",
     opts = {
-      timeout = 2000,
+      timeout = 4000,
       render = "compact",
       stages = "static",
       max_width = 35,
@@ -191,7 +191,20 @@ return {
       })
     end
   },
-
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require('mason-tool-installer').setup({
+        ensure_installed = {
+          'pyright',     -- LSP per Python
+          'lua-language-server',
+          'stylua',      -- Formatter per Lua
+          'shellcheck',  -- Per i tuoi script sul Raspberry
+        },
+      })
+    end,
+  },
   {
     "tpope/vim-fugitive",
   },
