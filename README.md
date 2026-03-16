@@ -23,15 +23,18 @@ To ensure plugins (Mason, Telescope, Treesitter) function correctly, install the
 # 📂 Configuration Structure
 
     .
-    ├── init.lua              # Entry point (Leader e require principali)
+    ├── assets                # just some screenshots
+    │   ├── neovim.png
+    │   └── telescope.png
+    ├── init.lua              # Entry point (Leader and Requirements)
     ├── lua/
     │   ├── config/
-    │   │   ├── lazy.lua      # Bootstrapping del plugin manager
-    │   │   ├── keymaps.lua   # Tutti i miei shortcut personalizzati
-    │   │   └── options.lua   # Settaggi di Neovim (indentazione, mouse, etc.)
+    │   │   ├── lazy.lua      # Package Manager
+    │   │   ├── keymaps.lua   # keyboard shortcuts
+    │   │   └── options.lua   # neovim options
     │   └── plugins/
-    │       └── init.lua      # Lista plugin e configurazioni LSP/UI
-    └── README.md
+    │       └── init.lua      # LSP and others plugins
+    └── README.md             # this file
 
 ## ⌨️ Custom Keybindings
 
