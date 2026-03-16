@@ -99,7 +99,13 @@ return {
         -- Specifica le sorgenti da cui attingere i suggerimenti
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
-          { name = 'buffer' },
+          { name = 'buffer',
+            option = {
+              get_bufnrs = function()
+                return vim.api.nvim_list_bufs() -- Legge da TUTTI i buffer aperti
+              end
+            }
+          },
           { name = 'path' },
         })
       })
