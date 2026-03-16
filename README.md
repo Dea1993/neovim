@@ -1,16 +1,26 @@
+# 🌙 Crystal's Neovim Config (v0.11+)
+
+> A professional Neovim configuration optimized for development
+
+## 📸 Preview
+
+
+![Main Editor View](assets/neovim.png)
+![Telescope](assets/telescope.png)
+
+
 ## 🛠️ Dipendenze di Sistema
 
-Per far funzionare correttamente i plugin (Mason, Telescope, Treesitter), installa i seguenti pacchetti tramite `pacman`:
+To ensure plugins (Mason, Telescope, Treesitter) function correctly, install the following packages via `pacman`:
 
-    sudo pacman -S git nodejs npm ripgrep fd base-devel unzip python-pip
+    sudo pacman -S git nodejs npm ripgrep fd base-devel unzip
 
-- npm/nodejs: Necessario per server LSP come vtsls e pyright.
-- ripgrep/fd: Rendono Telescope istantaneo nella ricerca file.
-- base-devel: Necessario per compilare l'estensione FZF nativa.
-- unzip: Usato da Mason per estrarre i pacchetti scaricati.
+- npm/nodejs: Required for LSP servers like vtsls and pyright.
+- ripgrep/fd: Essential for Telescope's instantaneous file and text searching.
+- base-devel: Needed to compile the native FZF extension.
+- unzip: Used by Mason to extract downloaded packages.
 
-📂 Struttura della Configurazione
-Plaintext
+# 📂 Configuration Structure
 
     .
     ├── init.lua              # Entry point (Leader e require principali)
@@ -23,77 +33,71 @@ Plaintext
     │       └── init.lua      # Lista plugin e configurazioni LSP/UI
     └── README.md
 
-Ecco una tabella dei comandi pulita e organizzata, pronta per essere incollata nel tuo README.md. Ho diviso i comandi per categorie (Navigazione, Editing, LSP e Telescope) così è molto più facile da consultare quando sei sulla Steam Deck.
-Markdown
+## ⌨️ Custom Keybindings
 
-## ⌨️ Comandi Personalizzati (Keybindings)
-
-Il tasto **Leader** e il **LocalLeader** sono impostati su `<CR>` (Invio).
+The Leader and LocalLeader keys are set to <CR> (Enter).
 
 ### 📂 Navigazione e Tab
-| Tasto | Azione | Descrizione |
+| Key | Action | Description |
 | :--- | :--- | :--- |
-| `<Tab>` | Prossima Tab | Passa alla scheda successiva |
-| `<S-Tab>` | Tab Precedente | Torna alla scheda precedente |
-| `<C-o>` | Nuova Tab | Apre una tab vuota (`:tabe`) |
-| `<Space>` | Page Down | Scorri pagina giù (in Normal mode) |
-| `<BackSpace>` | Page Up | Scorri pagina su (in Normal mode) |
+| `<Tab>` | Next Tab | Switch to the next tab |
+| `<S-Tab>` | Previous Tab | Switch to the previous tab |
+| `<C-o>` | Open Tab | Open a new Tab (`:tabe`) |
+| `<Space>` | Page Down | Scroll Down |
+| `<BackSpace>` | Page Up | Scroll Up |
 
 ### 📝 Editing e Utility
-| Tasto | Azione | Descrizione |
+| Key | Action | Description |
 | :--- | :--- | :--- |
-| `<C-c>` | Commenta | Commenta/Decommenta riga o selezione |
-| `<C-h>` | No Highlight | Pulisce i risultati della ricerca (`:noh`) |
-| `<C-t>` | No Expand Tab | Usa i tabulatori reali |
-| `<S-t>` | Expand Tab | Converte i tab in spazi |
-| `:Pdb` | Debug Python | Inserisce al volo un breakpoint PDB |
-| `Scroll 🖱️` | Move Cursor | La rotella muove il cursore `j`/`k` (anche in Insert) |
+| `<C-c>` | Comment/Uncomment | Comment/Uncomment selected lines |
+| `<C-h>` | No Highlight | Clean hilighted texts (`:noh`) |
+| `<C-t>` | No Expand Tab | Use Tab |
+| `<S-t>` | Expand Tab | Replace Tab with Spaces |
+| `:Pdb` | Debug Python | Insert python pdb |
+| `Scroll 🖱️` | Move Cursor | Scroll cursor with mouse wheel |
 
 ### 🔍 Telescope (Fuzzy Finder)
-| Tasto | Azione | Descrizione |
+| Key | Action | Description |
 | :--- | :--- | :--- |
-| `<Leader>ff` | Trova File | Cerca file per nome nel progetto |
-| `<Leader>gg` | Live Grep | Cerca una stringa dentro tutti i file |
-| `<Leader>ss` | Grep String | Cerca la parola sotto il cursore |
+| `<Leader>ff` | Find File | Search for files by name |
+| `<Leader>gg` | Live Grep | Search for a string across all files |
+| `<Leader>ss` | Grep String | Search for the word under the cursor |
 
-### 🤖 LSP e Programmazione
-| Tasto | Azione | Descrizione |
+### 🤖 LSP and Development
+| Key | Action | Description |
 | :--- | :--- | :--- |
-| `gd` | Go to Definition | Definizione in una **nuova tab** |
-| `K` | Hover | Mostra documentazione/tipo sotto il cursore |
-| `Tab` (menu) | Next Item | Naviga tra i suggerimenti dell'autocompletamento |
-| `Enter` | Confirm | Conferma il suggerimento selezionato |
+| `gd` | Go to Definition | Open the definition on a **new tab** |
+| `K` | Hover | Show documentation/Type under the cursor |
+| `Tab` (menu) | Next Item | Navigate through completion suggestions |
+| `Enter` | Confirm | Confirm the selected suggestion |
 
-# 🖱️ Mouse e Navigazione
+# 🖱️ Mouse and Navigation
+
+- Mouse Wheel: Physically moves the cursor up/down (even in Insert mode!).
+- Auto-remember position: When opening a file, Neovim automatically returns to the last known cursor position.
 
     Rotella del Mouse: Muove fisicamente il cursore j/k (anche in modalità Insert!).
 
     Auto-remember: All'apertura di un file, Neovim torna automaticamente all'ultima posizione del cursore.
 
-# 🚀 Plugin Installati
+# 🚀 Installed Plugins
 
-    Lazy.nvim: Gestore plugin ultra-veloce.
+- Lazy.nvim: Ultra-fast plugin manager.
+- Mason: Automatic installation for pyright, bashls, vtsls, stylua, shellcheck.
+- LSPConfig: Native integration for intelligent code completion.
+- Kanagawa: Main colorscheme (inspired by Japanese art).
+- Lualine: Elegant status line with icons and diagnostics.
+- Noice & Notify: Modern and compact notification system.
 
-    Mason: Per l'installazione automatica di pyright, bashls, vtsls, stylua, shellcheck.
 
-    LSPConfig: Integrazione nativa per l'autocompletamento intelligente.
+# 🔌 Quick Setup (Installation)
 
-    Kanagawa: Il tema principale (ispirato all'arte giapponese).
-
-    Lualine: Barra di stato elegante con icone e diagnostica.
-
-    Noice & Notify: Sistema di notifiche moderno e compatto.
-
-# 🔌 Setup Rapido (Installazione)
-
-Clona la repo nella tua cartella config:
-Bash
+Clone the repository into your config folder:
 
     git clone git@github.com:Dea1993/neovim.git ~/.config/nvim
 
-Avvia Neovim:
-Bash
+Launch Neovim:
 
     nvim
 
-Attendi che Lazy scarichi i plugin e Mason installi i server LSP. Riavvia se necessario.
+Wait for Lazy to download the plugins and Mason to install the LSP servers. Restart if necessary.
