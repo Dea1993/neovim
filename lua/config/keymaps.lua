@@ -30,6 +30,9 @@ vim.keymap.set('i', '<ScrollWheelUp>', '<Up>', { silent = true })
 vim.keymap.set('i', '<ScrollWheelDown>', '<Down>', { silent = true })
 vim.keymap.set('v', '<ScrollWheelUp>', 'k', { silent = true })
 vim.keymap.set('v', '<ScrollWheelDown>', 'j', { silent = true })
+-- copy by select as usually work on linux
+vim.keymap.set('v', '<LeftRelease>', '"*ygv', { silent = true })
+vim.keymap.set('v', '<2-LeftRelease>', '"*ygv', { silent = true })
 
 map('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
 map('n', '<leader>ss', '<cmd>Telescope grep_string<cr>')
