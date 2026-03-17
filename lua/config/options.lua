@@ -11,12 +11,14 @@ vim.diagnostic.config({
     focused = false,
     style = 'minimal',
     border = 'rounded',  -- Bordi arrotondati per il popup degli errori
-    source = 'always',   -- Mostra da quale LSP arriva l'errore (es. pyright, sqls)
+    source = true,   -- Mostra da quale LSP arriva l'errore (es. pyright, sqls)
     header = '',
     prefix = '',
   },
 })
-vim.opt.mouse = 'a'
+
+-- vim.opt.mouse = 'a'
+vim.opt.mouse = "" -- totally disable mouse, to let terminal-emulator control it
 vim.opt.mousescroll = "ver:1,hor:6"
 vim.opt.hlsearch = true
 vim.opt.expandtab = true
@@ -28,6 +30,11 @@ vim.opt.encoding = "utf-8"
 vim.opt.guicursor = "i:block"
 vim.opt.clipboard = "unnamedplus"
 vim.api.nvim_create_user_command('Pdb', 'normal! i import pdb; pdb.set_trace()\27', {})
+-- define cursor type during:
+-- [n]normal/[v]visual/[c]command/[sm]show-match: block
+-- [i]insert/[ci]command-line-insert/[ve]visual-exclusive: vertical line
+-- [r]replace/[cr]command-line-replace/[o]operator-pending
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver20,r-cr-o:hor20"
 
 -- AUTOCOMMANDS (Ricorda posizione)
 vim.api.nvim_create_autocmd("BufReadPost", {

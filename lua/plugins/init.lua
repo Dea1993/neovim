@@ -2,8 +2,14 @@ return {
   -- Solo il download, nessuna configurazione per ora
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
-  { 
-    "rebelot/kanagawa.nvim", 
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {},
+  },
+
+  {
+    "rebelot/kanagawa.nvim",
     config = function()
       vim.cmd("colorscheme kanagawa")
     end
@@ -29,6 +35,7 @@ return {
           "vtsls",        -- JavaScript/TypeScript (più moderno di tsserver)
           "bashls",       -- Bash
           "arduino_language_server",
+          "lua_ls",
         },
       })
 
@@ -58,6 +65,12 @@ return {
         filetypes = { "arduino" },
       })
 
+      -- Configurazione base per Lua
+      vim.lsp.config('lua_ls', {
+        filetypes = { "lua" },
+      })
+
+      -- Clangd
       vim.lsp.config('clangd', {
         cmd = { "clangd", "--background-index", "--clang-tidy" },
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto", "h" },
@@ -72,13 +85,13 @@ return {
         mapping = cmp.mapping.preset.insert({
           -- Conferma con Invio
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          
+
           -- Gestione del TAB
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item() -- Se il menu è aperto, vai al prossimo
-            elseif vim.snippet and vim.snippet.active({ direction = 0 }) then
-              vim.snippet.jump(0)    -- Se sei in uno snippet, salta al prossimo campo
+            elseif vim.snippet and vim.snippet.active({ direction = 1 }) then
+              vim.snippet.jump(1)    -- Se sei in uno snippet, salta al prossimo campo
             else
               fallback()             -- Altrimenti inserisci un Tab normale
             end
@@ -88,14 +101,14 @@ return {
           ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif vim.snippet and vim.snippet.active({ direction = -2 }) then
-              vim.snippet.jump(-2)
+            elseif vim.snippet and vim.snippet.active({ direction = -1 }) then
+              vim.snippet.jump(-1)
             else
               fallback()
             end
           end, { 'i', 's' }),
         }),
-        
+
         -- Specifica le sorgenti da cui attingere i suggerimenti
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
