@@ -1,7 +1,7 @@
 vim.diagnostic.config({
   virtual_text = {
     prefix = '●', -- Carattere che appare accanto all'errore
-    spacing = 12,
+    spacing = 8,
   },
   signs = true,          -- Mostra icone nella colonna laterale (sign column)
   underline = true,      -- Sottolinea il codice errato
@@ -27,21 +27,21 @@ vim.opt.shiftwidth = 2
 vim.opt.numberwidth = 2
 vim.opt.laststatus = 2
 vim.opt.encoding = "utf-8"
-vim.opt.guicursor = "i:block"
 vim.opt.clipboard = "unnamedplus"
-vim.api.nvim_create_user_command('Pdb', 'normal! i import pdb; pdb.set_trace()\27', {})
+
 -- define cursor type during:
 -- [n]normal/[v]visual/[c]command/[sm]show-match: block
 -- [i]insert/[ci]command-line-insert/[ve]visual-exclusive: vertical line
 -- [r]replace/[cr]command-line-replace/[o]operator-pending
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver20,r-cr-o:hor20"
 
+vim.api.nvim_create_user_command('Pdb', 'normal! iimport pdb; pdb.set_trace()\27', {})
 -- AUTOCOMMANDS (Ricorda posizione)
 vim.api.nvim_create_autocmd("BufReadPost", {
-    callback = function()
-        local mark = vim.api.nvim_buf_get_mark(0, '"')
-        if mark[1] > 1 and mark[1] <= vim.api.nvim_buf_line_count(0) then
-            vim.api.nvim_win_set_cursor(0, mark)
-        end
-    end,
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    if mark[1] > 1 and mark[1] <= vim.api.nvim_buf_line_count(0) then
+      vim.api.nvim_win_set_cursor(0, mark)
+    end
+  end,
 })

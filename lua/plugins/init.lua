@@ -1,5 +1,4 @@
 return {
-  -- Solo il download, nessuna configurazione per ora
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
   {
@@ -77,7 +76,13 @@ return {
       })
 
       -- Ricordati di abilitarlo!
-      vim.lsp.enable({ 'pyright', 'bashls', 'arduino_language_server', 'clangd' })
+      vim.lsp.enable({
+        'pyright',
+        'bashls',
+        'arduino_language_server',
+        'clangd',
+        'lua_ls',
+      })
 
       -- AUTOCOMPLETE with TAB
       local cmp = require('cmp')
@@ -241,6 +246,22 @@ return {
       })
     end,
   },
+
+  {
+    'lewis6991/gitsigns.nvim',
+    opts = {
+      signs = {
+        add          = { text = '┃' },
+        change       = { text = '┃' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
+        untracked    = { text = '┆' },
+      },
+      current_line_blame = true, -- Opzionale: mostra chi ha scritto la riga corrente
+    },
+  },
+
   {
     "tpope/vim-fugitive",
   },
