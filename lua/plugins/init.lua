@@ -35,6 +35,8 @@ return {
           "bashls",       -- Bash
           "arduino_language_server",
           "lua_ls",
+          'clangd',
+          'html',
         },
       })
 
@@ -69,6 +71,11 @@ return {
         filetypes = { "lua" },
       })
 
+      -- Configurazione base per Lua
+      vim.lsp.config('html', {
+        filetypes = { "html", "xhtml", "htm" },
+      })
+
       -- Clangd
       vim.lsp.config('clangd', {
         cmd = { "clangd", "--background-index", "--clang-tidy" },
@@ -78,10 +85,12 @@ return {
       -- Ricordati di abilitarlo!
       vim.lsp.enable({
         'pyright',
+        "vtsls",        -- JavaScript/TypeScript (più moderno di tsserver)
         'bashls',
         'arduino_language_server',
         'clangd',
         'lua_ls',
+        'html',
       })
 
       -- AUTOCOMPLETE with TAB
